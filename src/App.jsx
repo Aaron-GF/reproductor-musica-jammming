@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from './screens/home';
+import Home from './screens/Home/home';
 
 export default function App() {
-  return(
-    <>
+  return (
+    <div>
       <Home />
-    </>
+    </div>
   )
 }
