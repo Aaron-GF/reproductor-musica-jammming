@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IconContext } from 'react-icons';
-import styles from './sidebarButton.module.css';
+import styles from '@/components/sidebar/sidebarButton.module.css';
 
 export default function SidebarButton(props) {
     const location = useLocation();

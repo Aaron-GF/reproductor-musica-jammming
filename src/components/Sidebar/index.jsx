@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './sidebar.module.css';
-import SidebarButton from './sidebarButton';
+import styles from '@/components/Sidebar/sidebar.module.css';
+import SidebarButton from '@/components/Sidebar/sidebarButton';
 import { MdFavorite, MdSpaceDashboard } from 'react-icons/md';
 import { IoLibrary } from 'react-icons/io5';
 import { FaPlay, FaSignOutAlt } from 'react-icons/fa';
