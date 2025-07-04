@@ -1,47 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import styles from '@/screens/Home/home.module.css';
+
+import { exchangeCodeForToken } from '@/spotify';
+import Login from '@/screens/auth/login';
+import Sidebar from '@/components/Sidebar';
 import Library from '@/screens/Library/library';
 import Feed from '@/screens/Feed/feed';
 import Trending from '@/screens/Trending/trending';
 import Favorites from '@/screens/Favorites/favorites';
 import Player from '@/screens/Player/player';
-import styles from '@/screens/Home/home.module.css';
-import Sidebar from '@/components/Sidebar';
-import Login from '@/screens/auth/login';
-import { setClientToken } from '@/spotify';
 
 export default function Home() {
-    const [token, setToken] = useState("");
+  const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const token = window.localStorage.getItem("token");
-        const hash = window.location.hash;
-        window.location.hash = "";
-        if (!token && hash) {
-            const _token = hash.split("&")[0].split("=")[1];
-            window.localStorage.setItem("token", _token);
-            setToken(_token);
-            setClientToken(_token);
-        } else {
-            setToken(token);
-            setClientToken(token);
-        }
-    }, []);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const localToken = localStorage.getItem('access_token');
 
-    return !token ? (
-        <Login />
-    ) : (
-        <Router>
-            <div className="main-body">
-                <Sidebar />
-                <Routes>
-                    <Route path="/" element={<Library />} />
-                    <Route path="/feed" element={<Feed />} />
-                    <Route path="/trending" element={<Trending />} />
-                    <Route path="/player" element={<Player />} />
-                    <Route path="/favorites" element={<Favorites />} />
-                </Routes>
-            </div>
-        </Router>
-    );
+    if (localToken) {
+      setToken(localToken);
+      setLoading(false);
+      return;
+    }
+
+    if (!code) {
+      setLoading(false);
+      return;
+    }
+
+    // intercambiar código por token
+    exchangeCodeForToken(code)
+      .then(token => {
+        setToken(token);
+        window.history.replaceState({}, document.title, '/'); // limpia URL
+      })
+      .catch(err => {
+        console.error(err);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <p>Cargando...</p>;
+  if (!token) return <Login />;
+
+  return (
+    <Router>
+      <div className={styles.mainBody}>
+        <Sidebar />
+        <Routes>
+          <Route path="/library" element={<Library />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/trending" element={<Trending />} />
+          <Route path="/player" element={<Player />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }

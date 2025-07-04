@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '@/screens/auth/login.module.css';
-import { loginUrl } from '@/spotify';
+import { generateLoginUrl } from '@/spotify';
 
 export default function Login() {
+    const [loginUrl, setLoginUrl] = useState('');
+
+    useEffect(() => {
+        generateLoginUrl().then(url => setLoginUrl(url));
+    }, []);
+
+    if (!loginUrl) return <p>Cargando...</p>;
+
     return (
         <div className={styles.loginPage}>
             <img
