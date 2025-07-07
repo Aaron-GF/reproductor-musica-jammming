@@ -47,7 +47,7 @@ export const generateLoginUrl = async () => {
   };
 
   authUrl.search = new URLSearchParams(params).toString();
-  window.location.href = authUrl.toString();
+  return authUrl.toString();
 };
 
 // Intercambia código por token

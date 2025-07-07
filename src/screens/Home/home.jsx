@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import styles from '@/screens/Home/home.module.css';
 
 import { exchangeCodeForToken } from '@/spotify';
@@ -36,6 +36,7 @@ export default function Home() {
       .then(token => {
         setToken(token);
         window.history.replaceState({}, document.title, '/'); // limpia URL
+        window.location.reload();
       })
       .catch(err => {
         console.error(err);
@@ -47,7 +48,6 @@ export default function Home() {
   if (!token) return <Login />;
 
   return (
-    <Router>
       <div className={styles.mainBody}>
         <Sidebar />
         <Routes>
@@ -58,6 +58,5 @@ export default function Home() {
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>
-    </Router>
   );
 }

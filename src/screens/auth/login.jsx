@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from '@/screens/auth/login.module.css';
 import { generateLoginUrl } from '@/spotify';
 
 export default function Login() {
-    const [loginUrl, setLoginUrl] = useState('');
-
-    useEffect(() => {
-        generateLoginUrl().then(url => setLoginUrl(url));
-    }, []);
-
-    if (!loginUrl) return <p>Cargando...</p>;
+    const handleLogin = async () => {
+        const url = await generateLoginUrl();
+        window.location.href = url;
+    };
 
     return (
         <div className={styles.loginPage}>
@@ -18,9 +15,7 @@ export default function Login() {
                 alt="logo-spotify"
                 className={styles.logo}
             />
-            <a href={loginUrl}>
-                <div className={styles.loginBtn}>Iniciar sesión</div>
-            </a>
+            <button className={styles.loginBtn} onClick={handleLogin}>Iniciar sesión</button>
         </div>
     )
 }
