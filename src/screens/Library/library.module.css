@@ -2,7 +2,6 @@
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
-    
     height: 100%;
     align-items: flex-start;
 }
@@ -17,11 +16,9 @@
     padding: 1%;
     margin: 5%;
     background: rgb(30, 42, 62);
-    background: linear-gradient(
-        75deg,
-        rgb(40, 58, 88) 0%,
-        rgba(54, 69, 98, 0) 100%
-    );
+    background: linear-gradient(75deg,
+            rgb(40, 58, 88) 0%,
+            rgba(54, 69, 98, 0) 100%);
     transition: all .3s ease;
     cursor: pointer;
     transform: scale(1);
@@ -72,11 +69,9 @@
     width: 85%;
     height: 35%;
     border-radius: 20px;
-    background: linear-gradient(
-        180deg,
-        rgba(54, 69, 98, 0) 10%,
-        rgba(54, 69, 98, 1) 80%
-    );
+    background: linear-gradient(180deg,
+            rgba(54, 69, 98, 0) 10%,
+            rgba(54, 69, 98, 1) 80%);
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;

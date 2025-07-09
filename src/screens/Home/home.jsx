@@ -52,8 +52,9 @@ export default function Home() {
         <Sidebar />
         <Routes>
           <Route path="/library" element={<Library />} />
-          <Route path="/feed" element={<Feed />} />
+          <Route path="/" element={<Feed />} />
           <Route path="/trending" element={<Trending />} />
+          <Route path="/player/:id" element={<Player />} />
           <Route path="/player" element={<Player />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>

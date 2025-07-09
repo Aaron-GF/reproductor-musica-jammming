@@ -22,12 +22,11 @@ export default function Library() {
         return response.json();
       })
       .then(data => setPlaylists(data.items))
-      .catch(console.error);
   }, [token]);
 
   const navigate = useNavigate();
   const playPlaylist = id => {
-    navigate('/player', { state: { id: id } })
+    navigate(`/player/${id}`)
   }
 
   return (

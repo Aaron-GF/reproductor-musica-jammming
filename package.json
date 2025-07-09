@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://aaron-gf.github.io/Reproductor-musica-Jammming/",
+  "homepage": "https://aaron-gf.github.io/reproductor-musica-jammming/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
