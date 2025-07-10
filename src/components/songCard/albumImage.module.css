@@ -9,15 +9,15 @@
 
 .albumImage img {
     border-radius: 30px;
-    width: 100%;
+    width: 80%;
     aspect-ratio: 1;
 }
 
 .albumImageShadow {
-    -webkit-filter: blur(10px);
-    filter: blur(10px);
-    width: 90%;
-    position: absolute;
-    z-index: -1;
-    top: 25px;
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+  width: 90%;
+  position: absolute;
+  z-index: -1;
+  top: 20px;
 }

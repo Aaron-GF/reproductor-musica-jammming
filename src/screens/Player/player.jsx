@@ -27,14 +27,19 @@ export default function Player() {
         setCurrentTrack(data.items[0]?.track);
       })
       .catch((err) => console.error("Error cargando tracks:", err));
-  }, [id, token])
+  }, [id, token]);
+
+  useEffect(() => {
+    setCurrentTrack(tracks[currentIndex]?.track)
+  }, [currentIndex, tracks]);
 
   return (
     <div className={`${global.screenContainer} ${global.flex}`}>
       <div className={styles.leftBody}></div>
-      <div className={styles.rightBody}></div>
-      <SongCard album={currentTrack?.album} />
-      <Queue />
+      <div className={styles.rightBody}>
+        <SongCard album={currentTrack?.album} />
+        <Queue tracks={tracks} setCurrentIndex={setCurrentIndex}/>
+      </div>
     </div>
   )
 }
