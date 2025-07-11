@@ -8,7 +8,7 @@ function formatDuration(ms) {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-export default function Queue({ tracks, setCurrentIndex }) {
+export default function Queue({ tracks, setCurrentIndex, setIsPlaying }) {
   return (
     <div className={styles.queueContainer}>
       <div className={styles.queue}>
