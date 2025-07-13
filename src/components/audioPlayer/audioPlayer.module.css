@@ -1,14 +1,11 @@
 .playerBody {
   display: flex;
-  gap: 20px;
-  align-items: center;
-  padding: 20px;
+  align-items: end;
   justify-content: center;
-  height: 50%;
+  height: 40%;
 }
 
 .iframeWrapper {
-  margin-top: 10px;
   display: flex;
   justify-content: center;
   width: 100%;

@@ -1,6 +1,6 @@
 const clientId = '055a20ea891b4c03b8c94ed830fcd1db';
 const redirectUrl = 'http://127.0.0.1:5173';
-const scope = 'user-read-private user-read-email';
+const scope = 'user-read-private user-read-email user-read-recently-played';
 const authEndpoint = "https://accounts.spotify.com/authorize";
 
 // Verificador de código

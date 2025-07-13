@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from '@/screens/auth/login.module.css';
 import { generateLoginUrl } from '@/spotify';
+import jammmingLogo from '@/assets/jammming.png';
+import spotifyLogo from '@/assets/spotify-logo.png';
+
 
 export default function Login() {
     const handleLogin = async () => {
@@ -11,11 +14,18 @@ export default function Login() {
     return (
         <div className={styles.loginPage}>
             <img
-                src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png"
-                alt="logo-spotify"
-                className={styles.logo}
+                src={jammmingLogo}
+                alt="logo-jammming"
+                className={styles.appLogo}
             />
-            <button className={styles.loginBtn} onClick={handleLogin}>Iniciar sesión</button>
+            <div className={styles.login}>
+                <button className={styles.loginBtn} onClick={handleLogin}>Iniciar sesión</button>
+                <img
+                    src={spotifyLogo}
+                    alt="logo-spotify"
+                    className={styles.logo}
+                />
+            </div>
         </div>
     )
 }
