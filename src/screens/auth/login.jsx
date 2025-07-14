@@ -12,20 +12,23 @@ export default function Login() {
     };
 
     return (
-        <div className={styles.loginPage}>
-            <img
-                src={jammmingLogo}
-                alt="logo-jammming"
-                className={styles.appLogo}
-            />
-            <div className={styles.login}>
-                <button className={styles.loginBtn} onClick={handleLogin}>Iniciar sesión</button>
+            <div className={styles.loginPage}>
                 <img
-                    src={spotifyLogo}
-                    alt="logo-spotify"
-                    className={styles.logo}
+                    src={jammmingLogo}
+                    alt="logo-jammming"
+                    className={styles.appLogo}
                 />
+                <div className={styles.login}>
+                    <button className={styles.loginBtn} onClick={handleLogin}>Iniciar sesión</button>
+                    <div className={styles.user}>
+                        <span>con tu cuenta de </span>
+                        <img
+                            src={spotifyLogo}
+                            alt="logo-spotify"
+                            className={styles.logo}
+                        />
+                    </div>
+                </div>
             </div>
-        </div>
     )
 }

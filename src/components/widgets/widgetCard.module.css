@@ -12,6 +12,7 @@
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   padding-bottom: 4%;
+  transform-origin: center center;
 }
 
 .widgetCardBody:hover {

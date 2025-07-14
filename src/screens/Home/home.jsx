@@ -53,6 +53,7 @@ export default function Home() {
         <Routes>
           <Route path="/library" element={<Library />} />
           <Route path="/" element={<Feed />} />
+          <Route path="/feed" element={<Feed />} />
           <Route path="/trending" element={<Trending />} />
           <Route path="/player/:id" element={<Player />} />
           <Route path="/player" element={<Player />} />
