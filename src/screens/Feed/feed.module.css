@@ -1,60 +1,24 @@
-.searchWrapper {
-    width: 100%;
-    max-width: 400px;
-    margin: 4% auto;
-    z-index: 1;
-    position: relative;
-}
-
-.searchInput {
-    width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 30px;
-    outline: none;
-    border: none;
-    transition: border 0.3s ease;
-    background: #181818;
-    color: #ccc;
-}
-
-.searchInput:focus {
-    border: 1px solid #e99d72;
-    /* verde Spotify */
-    box-shadow: 0 0 5px rgba(244, 187, 146, 1);
-}
-
-.searchIcon {
-    position: absolute;
-    right: .5rem;
-    top: 60%;
-    transform: translateY(-50%);
-    color: #e99d72;
-    font-size: 1.5rem;
-    cursor: pointer;
-    background: none;
-    border: none;
-}
-
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 30px;
     margin: 10%;
-    overflow-y: auto;
 }
 
 .card {
-    background-color: #181818;
+    background: linear-gradient(75deg,
+            rgb(40, 58, 88) 0%,
+            rgba(54, 69, 98, 0) 100%);
+    border: 1px solid rgba(54, 69, 98, .18);
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 

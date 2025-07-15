@@ -1,0 +1,35 @@
+.searchWrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 4% auto;
+    z-index: 1;
+    position: relative;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    transition: all .6s ease;
+    background: #181818;
+    color: #ccc;
+}
+
+.searchInput:focus {
+    box-shadow: 0 0 8px rgba(244, 187, 146, 1);
+}
+
+.searchIcon {
+    position: absolute;
+    right: .5rem;
+    top: 60%;
+    transform: translateY(-50%);
+    color: #e99d72;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+}

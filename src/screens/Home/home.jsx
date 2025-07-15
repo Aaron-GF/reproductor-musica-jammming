@@ -48,17 +48,18 @@ export default function Home() {
   if (!token) return <Login />;
 
   return (
-      <div className={styles.mainBody}>
-        <Sidebar />
-        <Routes>
-          <Route path="/library" element={<Library />} />
-          <Route path="/" element={<Feed />} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/trending" element={<Trending />} />
-          <Route path="/player/:id" element={<Player />} />
-          <Route path="/player" element={<Player />} />
-          <Route path="/favorites" element={<Favorites />} />
-        </Routes>
-      </div>
+    <div className={styles.mainBody}>
+      <Sidebar />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/library" element={<Library />} />
+        <Route path="/" element={<Feed />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/trending" element={<Trending />} />
+        <Route path="/player/:id" element={<Player />} />
+        <Route path="/player" element={<Player />} />
+        <Route path="/favorites" element={<Favorites />} />
+      </Routes>
+    </div>
   );
 }
