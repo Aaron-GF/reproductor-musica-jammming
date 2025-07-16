@@ -11,6 +11,7 @@ export default function Feed() {
   const token = localStorage.getItem('access_token');
 
   useEffect(() => {
+    if (!token) return;
     if (search) return;
 
     fetch('https://api.spotify.com/v1/browse/new-releases?limit=10', {
@@ -30,6 +31,7 @@ export default function Feed() {
   }, [token, search]);
 
   useEffect(() => {
+    if (!token) window.location.href = '/login';
     if (search.trim() === '') {
       setTracks([]);
       return;
@@ -53,34 +55,34 @@ export default function Feed() {
     return () => clearTimeout(delay);
   }, [search, token]);
 
-return (
+  return (
     <div className={global.screenContainer}>
       <SongSearch search={search} setSearch={setSearch} />
 
       <div className={styles.grid}>
         {search === ''
           ? albums.map(album => (
-              <div
-                key={album.id}
-                className={styles.card}
-                onClick={() => window.open(album.external_urls.spotify, '_blank')}
-              >
-                <img src={album.images[0]?.url} alt={album.name} className={styles.albumImage} />
-                <p className={styles.albumName}>{album.name}</p>
-                <p className={styles.artists}>{album.artists.map(a => a.name).join(', ')}</p>
-              </div>
-            ))
+            <div
+              key={album.id}
+              className={styles.card}
+              onClick={() => window.open(album.external_urls.spotify, '_blank')}
+            >
+              <img src={album.images[0]?.url} alt={album.name} className={styles.albumImage} />
+              <p className={styles.albumName}>{album.name}</p>
+              <p className={styles.artists}>{album.artists.map(a => a.name).join(', ')}</p>
+            </div>
+          ))
           : tracks.map(track => (
-              <div
-                key={track.id}
-                className={styles.card}
-                onClick={() => window.open(track.external_urls.spotify, '_blank')}
-              >
-                <img src={track.album.images[0]?.url} alt={track.name} className={styles.albumImage} />
-                <p className={styles.albumName}>{track.name}</p>
-                <p className={styles.artists}>{track.artists.map(a => a.name).join(', ')}</p>
-              </div>
-            ))}
+            <div
+              key={track.id}
+              className={styles.card}
+              onClick={() => window.open(track.external_urls.spotify, '_blank')}
+            >
+              <img src={track.album.images[0]?.url} alt={track.name} className={styles.albumImage} />
+              <p className={styles.albumName}>{track.name}</p>
+              <p className={styles.artists}>{track.artists.map(a => a.name).join(', ')}</p>
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export default function Home() {
   if (!token) return <Login />;
 
   return (
-    <div className={styles.mainBody}>
+      <div className={styles.mainBody}>
       <Sidebar />
       <Routes>
         <Route path="/login" element={<Login />} />

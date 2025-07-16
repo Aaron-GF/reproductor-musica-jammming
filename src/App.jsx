@@ -1,21 +1,33 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import Home from '@/screens/Home/home';
-import Login from '@/screens/auth/login';
-import ProtectedRoute from '@/screens/auth/protectedRoute';
+import Swal from 'sweetalert2';
 
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
-  )
+  const [checked, setChecked] = useState(false); // Controla si ya evaluamos el token
+  const [validToken, setValidToken] = useState(false); // Si hay token válido
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+
+    if (!token) {
+      Swal.fire({
+        title: 'Sesión expirada',
+        icon: 'warning',
+        confirmButtonText: 'Continuar',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+      }).then(() => {
+        window.location.href = '/login';
+      });
+    } else {
+      setValidToken(true); // Solo si hay token válido
+    }
+
+    setChecked(true); // Marcar que ya evaluamos
+  }, []);
+
+  if (!checked) return null; // Mostrar nada mientras evaluamos
+
+  return validToken ? <Home /> : null;
 }

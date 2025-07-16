@@ -7,7 +7,8 @@ export default function LogOutButton(props) {
         const confirmed = window.confirm("¿Seguro que quieres cerrar sesión?");
         if (confirmed) {
             localStorage.removeItem('access_token');
-            window.location.reload();
+            localStorage.removeItem('expires_at')
+            window.location.href = '/login';
         }
     }
 
