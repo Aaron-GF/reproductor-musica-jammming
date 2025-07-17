@@ -4,14 +4,18 @@ import WidgetEntry from "@/components/widgets/widgetEntry";
 import { IconContext } from "react-icons";
 import { FiChevronRight } from "react-icons/fi";
 
-export default function WidgetCard({ title, recentlyPlayed, topTracks, newRelease }) {
+export default function WidgetCard({ title, recentlyPlayed, topTracks }) {
+const uniqueRecentlyPlayed = (recentlyPlayed || []).filter(
+  (item, index, self) =>
+    index === self.findIndex(t => t.id === item.id)
+);
   return (
     <div className={styles.widgetCardBody}>
       <p className={styles.widgetTitle}>{title}</p>
 
-      {recentlyPlayed?.map((item) => (
+      {uniqueRecentlyPlayed.map((item) => (
         <WidgetEntry
-          key={item.id}
+          key={`recently-${item.id}`}
           title={item?.name}
           subtitle={item?.artists?.map((artist) => artist.name).join(", ")}
           image={item?.album?.images?.[0]?.url}
@@ -20,7 +24,7 @@ export default function WidgetCard({ title, recentlyPlayed, topTracks, newReleas
 
       {topTracks?.map((track) => (
         <WidgetEntry
-          key={track.id}
+          key={`top-${track.id}`}
           title={track?.name}
           subtitle={track?.album?.artists?.map(artist => artist.name).join(", ")}
           image={track?.album?.images[0]?.url}

@@ -1,15 +1,25 @@
 import React from 'react';
 import styles from '@/components/sidebar/sidebarButton.module.css';
 import { IconContext } from 'react-icons';
+import Swal from 'sweetalert2';
 
 export default function LogOutButton(props) {
     function handleLogOut() {
-        const confirmed = window.confirm("¿Seguro que quieres cerrar sesión?");
-        if (confirmed) {
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('expires_at')
-            window.location.href = '/login';
-        }
+        Swal.fire({
+            title: 'Cerrar sesión',
+            text: 'Tu sesión se cerrará. ¿Deseas continuar?',
+            icon: 'question',
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar',
+            showCancelButton: true
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/login';
+                    localStorage.removeItem('access_token');
+                    localStorage.removeItem('expires_at');
+                }
+            })
     }
 
     return (

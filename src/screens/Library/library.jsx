@@ -4,12 +4,14 @@ import styles from '@/screens/Library/library.module.css';
 import { IconContext } from 'react-icons';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { checkTokenStatus } from '@/utils/checkTokenStatus';
 
 export default function Library() {
   const [playlists, setPlaylists] = useState([]);
   const token = localStorage.getItem('access_token');
 
   useEffect(() => {
+    checkTokenStatus();
     if (!token) return;
 
     fetch('https://api.spotify.com/v1/me/playlists', {

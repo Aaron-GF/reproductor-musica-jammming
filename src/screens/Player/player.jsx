@@ -6,6 +6,7 @@ import SongCard from '@/components/songCard/songCard';
 import Queue from '@/components/queue/queue';
 import AudioPlayer from '@/components/audioPlayer/audioPlayer';
 import Widgets from '@/components/widgets/index';
+import { checkTokenStatus } from '@/utils/checkTokenStatus';
 
 export default function Player() {
   const { id } = useParams();
@@ -18,6 +19,7 @@ export default function Player() {
 
   // Obtener playlists de la biblioteca
   useEffect(() => {
+    checkTokenStatus();
     if (!token) return;
 
     fetch('https://api.spotify.com/v1/me/playlists?limit=10', {
@@ -36,6 +38,7 @@ export default function Player() {
 
   // Decidir qué playlist cargar: id de URL o la primera de la biblioteca
   useEffect(() => {
+    checkTokenStatus();
     if (id) {
       setPlaylistId(id);
     } else if (libraryPlaylists.length > 0) {
@@ -46,6 +49,7 @@ export default function Player() {
 
   // Cargar tracks de la playlist seleccionada
   useEffect(() => {
+    checkTokenStatus();
     if (!playlistId || !token) return;
 
     fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
@@ -65,6 +69,7 @@ export default function Player() {
   }, [playlistId, token]);
 
   useEffect(() => {
+    checkTokenStatus();
     if (tracks.length > 0) {
       setCurrentTrack(tracks[currentIndex]?.track);
     }

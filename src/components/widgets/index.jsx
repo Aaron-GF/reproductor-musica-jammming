@@ -7,7 +7,6 @@ export default function Widgets({ artistID }) {
   const [topTracks, setTopTracks] = useState([]);
   const [newRelease, setNewRelease] = useState([]);
   const token = localStorage.getItem("access_token");
-  console.log(artistID);
 
   useEffect(() => {
     if (!artistID || !token) return;

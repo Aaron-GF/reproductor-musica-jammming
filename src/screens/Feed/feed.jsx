@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import global from '@/shared/globalStyles.module.css';
 import styles from '@/screens/Feed/feed.module.css';
 import SongSearch from '@/screens/Feed/songSearch';
+import { checkTokenStatus } from '@/utils/checkTokenStatus';
 
 // Cargar las novedades (albums) al inicio
 export default function Feed() {
@@ -11,10 +12,10 @@ export default function Feed() {
   const token = localStorage.getItem('access_token');
 
   useEffect(() => {
-    if (!token) return;
+    checkTokenStatus();
     if (search) return;
 
-    fetch('https://api.spotify.com/v1/browse/new-releases?limit=10', {
+    fetch('https://api.spotify.com/v1/browse/new-releases?limit=8', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -31,7 +32,7 @@ export default function Feed() {
   }, [token, search]);
 
   useEffect(() => {
-    if (!token) window.location.href = '/login';
+    checkTokenStatus();
     if (search.trim() === '') {
       setTracks([]);
       return;

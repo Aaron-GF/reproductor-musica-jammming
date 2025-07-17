@@ -3,7 +3,14 @@ import styles from '@/screens/Feed/songSearch.module.css';
 import { AiOutlineSearch } from "react-icons/ai";
 
 export default function SongSearch({ search, setSearch }) {
-    
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, [search]);
+
+
     return (
         <div className={styles.searchWrapper}>
             <input

@@ -1,9 +1,9 @@
 .libraryBody {
     display: flex;
     flex-wrap: wrap;
-    overflow-y: auto;
     height: 100%;
     padding-left: 2%;
+    margin-bottom: 5%;
 }
 
 .playlistCard {

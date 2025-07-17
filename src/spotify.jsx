@@ -79,6 +79,8 @@ export const exchangeCodeForToken = async (code) => {
   const data = await response.json();
 
   localStorage.setItem('access_token', data.access_token);
+  const expiresAt = Date.now() + data.expires_in * 1000;
+  localStorage.setItem('expires_at', expiresAt.toString());
 
   localStorage.removeItem('code_verifier');
   return data.access_token;
