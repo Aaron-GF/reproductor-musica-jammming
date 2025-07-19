@@ -7,9 +7,8 @@ import Login from '@/screens/auth/login';
 import Sidebar from '@/components/Sidebar';
 import Library from '@/screens/Library/library';
 import Feed from '@/screens/Feed/feed';
-import Trending from '@/screens/Trending/trending';
-import Favorites from '@/screens/Favorites/favorites';
 import Player from '@/screens/Player/player';
+import CreatePlaylist from '@/screens/CreatePlaylist/createPlaylist';
 
 export default function Home() {
   const [token, setToken] = useState(null);
@@ -55,10 +54,9 @@ export default function Home() {
         <Route path="/library" element={<Library />} />
         <Route path="/" element={<Feed />} />
         <Route path="/feed" element={<Feed />} />
-        <Route path="/trending" element={<Trending />} />
         <Route path="/player/:id" element={<Player />} />
         <Route path="/player" element={<Player />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/createPlaylist" element={<CreatePlaylist />} />
       </Routes>
     </div>
   );

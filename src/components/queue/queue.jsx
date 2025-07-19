@@ -8,7 +8,8 @@ function formatDuration(ms) {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-export default function Queue({ tracks, setCurrentIndex }) {
+export default function Queue({ tracks, setCurrentIndex, artist }) {
+  console.log(tracks);
   return (
     <div className={styles.queueContainer}>
       <div className={styles.queue}>
@@ -17,7 +18,7 @@ export default function Queue({ tracks, setCurrentIndex }) {
           {
             tracks?.map((track, index) => (
               <div key={index} className={styles.queueItem} onClick={() => setCurrentIndex(index)}>
-                <p className={styles.trackName}>{track?.track?.name}</p>
+                <p className={styles.trackName}>{`${track?.track?.name} - ${track?.track?.artists[0]?.name || "Desconocido"}`}</p>
                 <p>{formatDuration(track?.track?.duration_ms)}</p>
               </div>
             ))

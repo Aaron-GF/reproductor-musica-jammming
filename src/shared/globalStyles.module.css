@@ -5,7 +5,7 @@
     background-color: #1e2a3e;
     border-radius: 30px;
     opacity: 1;
-    background-image: repeating-radial-gradient(circle at 0% 35%, transparent 0, #1e2a3e 100px), repeating-linear-gradient(#23365655, #233656);
+    background-image: repeating-radial-gradient(circle at 0% 23%, transparent 0, #1e2a3e 100px), repeating-linear-gradient(#23365655, #233656);
     overflow-y: auto;
     scrollbar-color: transparent transparent;
     transition: all .3s ease;

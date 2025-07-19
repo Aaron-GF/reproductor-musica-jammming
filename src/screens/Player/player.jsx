@@ -5,7 +5,6 @@ import styles from '@/screens/Player/player.module.css';
 import SongCard from '@/components/songCard/songCard';
 import Queue from '@/components/queue/queue';
 import AudioPlayer from '@/components/audioPlayer/audioPlayer';
-import Widgets from '@/components/widgets/index';
 import { checkTokenStatus } from '@/utils/checkTokenStatus';
 
 export default function Player() {
@@ -62,6 +61,7 @@ export default function Player() {
           return;
         }
         setTracks(data.items);
+        console.log(data.items)
         setCurrentTrack(data.items[0]?.track);
         setCurrentIndex(0);
       })
@@ -84,11 +84,10 @@ export default function Player() {
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
         />
-        <Widgets artistID={currentTrack?.album?.artists[0]?.id} />
+        <Queue artist={currentTrack?.artist} tracks={tracks} setCurrentIndex={setCurrentIndex} />
       </div>
       <div className={styles.rightBody}>
         <SongCard album={currentTrack?.album} />
-        <Queue tracks={tracks} setCurrentIndex={setCurrentIndex} />
       </div>
     </div>
   );
