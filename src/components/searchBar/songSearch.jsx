@@ -3,7 +3,7 @@ import styles from '@/components/searchBar/songSearch.module.css';
 import { AiOutlineSearch } from "react-icons/ai";
 import { checkTokenStatus } from '@/utils/checkTokenStatus';
 
-export default function SongSearch({ onEmptySearch, onSearchActive }) {
+export default function SongSearch({ onEmptySearch, onSearchActive, onTrackSelected }) {
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([])
     const token = localStorage.getItem('access_token');
@@ -27,7 +27,7 @@ export default function SongSearch({ onEmptySearch, onSearchActive }) {
         onSearchActive?.();
 
         const delay = setTimeout(() => {
-            fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(search)}&type=track&limit=5`, {
+            fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(search)}&type=track&limit=3`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
                 .then(res => res.json())
@@ -48,7 +48,7 @@ export default function SongSearch({ onEmptySearch, onSearchActive }) {
     }, [search, token]);
 
     return (
-    <div>
+    <div className={styles.searchContainer}>
       <div className={styles.searchWrapper}>
         <input
           type="search"
@@ -57,9 +57,9 @@ export default function SongSearch({ onEmptySearch, onSearchActive }) {
           onChange={e => setSearch(e.target.value)}
           className={styles.searchInput}
         />
-        <button className={styles.searchIcon}>
+        <span className={styles.searchIcon}>
           <AiOutlineSearch />
-        </button>
+        </span>
       </div>
 
       <div className={styles.grid}>
@@ -67,7 +67,7 @@ export default function SongSearch({ onEmptySearch, onSearchActive }) {
           <div
             key={track.id}
             className={styles.card}
-            onClick={() => window.open(track.external_urls.spotify, '_blank')}
+            onClick={() => onTrackSelected?.(track)}
           >
             <img src={track.album.images[0]?.url} alt={track.name} className={styles.albumImage} />
             <p className={styles.albumName}>{track.name}</p>

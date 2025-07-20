@@ -1,46 +1,54 @@
+.searchContainer {
+    height: 6%;
+}
+
 .searchWrapper {
-    width: 100%;
-    max-width: 400px;
-    margin: 4% auto;
+    max-width: 20%;
+    margin: auto;
     z-index: 1;
-    position: fixed;
-    top: 0;
-    left: 39%;
+    display: flex;
+    transition: all .6s ease;
 }
 
 .searchInput {
     width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
     font-size: .9rem;
-    border-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     outline: none;
     border: none;
-    transition: all .6s ease;
     background: #181818;
     color: #ccc;
+    margin: 0;
+    padding-left: .8rem;
 }
 
-.searchInput:focus {
-    box-shadow: 0 0 8px rgba(244, 187, 146, 1);
+
+.searchWrapper:has(.searchInput:focus) {
+  box-shadow: 0 0 8px rgba(244, 187, 146, 1);
+  border-radius: 30px;
+  max-width: 30%;
 }
 
 .searchIcon {
-    position: absolute;
-    right: .5rem;
-    top: 60%;
-    transform: translateY(-50%);
     color: #e99d72;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     cursor: pointer;
-    background: none;
+    background: #181818;
     border: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    transition: all .6s ease;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
-    margin: 10%;
+    margin: 5% 15% 15% 10%;
 }
 
 .card {

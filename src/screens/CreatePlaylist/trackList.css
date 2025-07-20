@@ -1,6 +1,5 @@
 .scroll-list-container {
   position: relative;
-  width: 400px;
 }
 
 .scroll-list {
@@ -13,12 +12,8 @@
   width: 8px;
 }
 
-.scroll-list::-webkit-scrollbar-track {
-  background: #060010;
-}
-
 .scroll-list::-webkit-scrollbar-thumb {
-  background: #271E37;
+  background: #233656;
   border-radius: 4px;
 }
 
@@ -33,13 +28,13 @@
 
 .item {
   padding: 16px;
-  background-color: #170D27;
+  background-color: #23365655;
   border-radius: 8px;
   margin-bottom: 1rem;
 }
 
 .item.selected {
-  background-color: #271E37;
+  background-color: #233656;
 }
 
 .item-text {
@@ -53,7 +48,7 @@
   left: 0;
   right: 0;
   height: 50px;
-  background: linear-gradient(to bottom, #060010, transparent);
+  background: linear-gradient(to bottom, #181818, transparent);
   pointer-events: none;
   transition: opacity 0.3s ease;
   border-radius: 20px;
@@ -65,8 +60,29 @@
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to top, #060010, transparent);
+  background: linear-gradient(to top, #181818, transparent);
   pointer-events: none;
   transition: opacity 0.3s ease;
   border-radius: 20px;
+}
+
+input {
+  padding: 1%;
+  margin: 3% auto;
+  display: flex;
+}
+
+.create-playlist-btn {
+  margin: 5% auto;
+  display: flex;
+  padding: 2%;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.track-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
 }

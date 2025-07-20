@@ -21,7 +21,7 @@ const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => 
   );
 };
 
-export default function TrackList ({
+export default function TrackList({
   items = [
     'Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5',
     'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10',
@@ -34,7 +34,7 @@ export default function TrackList ({
   itemClassName = '',
   displayScrollbar = true,
   initialSelectedIndex = -1,
-})  {
+}) {
   const listRef = useRef(null);
   const [selectedIndex, setSelectedIndex] = useState(initialSelectedIndex);
   const [keyboardNav, setKeyboardNav] = useState(false);
@@ -98,43 +98,47 @@ export default function TrackList ({
   }, [selectedIndex, keyboardNav]);
 
   return (
-    <div className={`scroll-list-container ${className}`}>
-      <div
-        ref={listRef}
-        className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`}
-        onScroll={handleScroll}
-      >
-        {items.map((item, index) => (
-          <AnimatedItem
-            key={index}
-            delay={0.1}
-            index={index}
-            onMouseEnter={() => setSelectedIndex(index)}
-            onClick={() => {
-              setSelectedIndex(index);
-              if (onItemSelect) {
-                onItemSelect(item, index);
-              }
-            }}
-          >
-            <div className={`item ${selectedIndex === index ? 'selected' : ''} ${itemClassName}`}>
-              <p className="item-text">{item}</p>
-            </div>
-          </AnimatedItem>
-        ))}
+    <div className='track-list-container'>
+      <input type="text" />
+      <div className={`scroll-list-container ${className}`}>
+        <div
+          ref={listRef}
+          className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`}
+          onScroll={handleScroll}
+        >
+          {items.map((item, index) => (
+            <AnimatedItem
+              key={index}
+              delay={0.1}
+              index={index}
+              onMouseEnter={() => setSelectedIndex(index)}
+              onClick={() => {
+                setSelectedIndex(index);
+                if (onItemSelect) {
+                  onItemSelect(item, index);
+                }
+              }}
+            >
+              <div className={`item ${selectedIndex === index ? 'selected' : ''} ${itemClassName}`}>
+                <p className="item-text">{item}</p>
+              </div>
+            </AnimatedItem>
+          ))}
+        </div>
+        {showGradients && (
+          <>
+            <div
+              className="top-gradient"
+              style={{ opacity: topGradientOpacity }}
+            ></div>
+            <div
+              className="bottom-gradient"
+              style={{ opacity: bottomGradientOpacity }}
+            ></div>
+          </>
+        )}
       </div>
-      {showGradients && (
-        <>
-          <div
-            className="top-gradient"
-            style={{ opacity: topGradientOpacity }}
-          ></div>
-          <div
-            className="bottom-gradient"
-            style={{ opacity: bottomGradientOpacity }}
-          ></div>
-        </>
-      )}
+      <button className='create-playlist-btn'>Crear lista de reproducción</button>
     </div>
   );
 };

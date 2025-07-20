@@ -1,7 +1,25 @@
 .trackList {
-    background: black;
-    border-radius: 20px;
-    position: fixed;
-    margin: -5% 5% 5%;
+    background: #181818;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    width: 40%;
 }
 
+.rightBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.browser {
+    width: 100%;
+    margin-top: 3%;
+}
+
+.audioWrapper {
+  bottom: 0;
+  width: 60%;
+}

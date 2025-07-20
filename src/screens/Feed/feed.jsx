@@ -29,7 +29,9 @@ export default function Feed() {
 
   return (
     <div className={global.screenContainer}>
-      <SongSearch onEmptySearch={() => setShowNewReleases(true)} onSearchActive={() => setShowNewReleases(false)} />
+      <div className={styles.fixed}>
+        <SongSearch onEmptySearch={() => setShowNewReleases(true)} onSearchActive={() => setShowNewReleases(false)} />
+      </div>
       {showNewReleases && (
         <div className={styles.grid}>
           {albums.map(album => (
