@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import defaultImage from '@/assets/fondo-por-defecto-playlist.jpg'
 import background from '@/shared/globalStyles.module.css';
 import styles from '@/screens/Library/library.module.css';
 import { IconContext } from 'react-icons';
@@ -37,8 +38,12 @@ export default function Library() {
         {playlists?.map((playlist) => (
           <div key={playlist.id} className={styles.playlistCard} onClick={() => playPlaylist(playlist.id)}>
             {playlist.images.length > 0 && (
-              <img src={playlist.images[0].url} alt={`Imagen de ${playlist.name}`} className={styles.playlistImage} />
-            )}
+              <img
+                src={playlist.images && playlist.images.length > 0
+                  ? playlist.images[0].url
+                  : defaultImage}
+                alt={`Imagen de ${playlist.name}`}
+              />)}
             <p className={styles.playlistTitle}>{playlist.name}</p>
             <p className={styles.playlistSubtitle}>{playlist.tracks.total} Canciones</p>
             <div className={styles.playlistFade}>

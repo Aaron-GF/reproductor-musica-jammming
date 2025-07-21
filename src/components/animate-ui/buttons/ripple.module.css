@@ -1,0 +1,40 @@
+.button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: #f8d9c0; 
+  color: black;
+  width: 50%;
+  height: 8%;
+  margin: 0 auto;
+}
+
+.button:hover {
+  background-color: #fff;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  background-color: #1e2a3e;
+}

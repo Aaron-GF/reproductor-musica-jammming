@@ -14,7 +14,7 @@ export default function AudioPlayer({ currentTrack }) {
                     style={{ borderRadius: "12px" }}
                     src={embedUrl}
                     width="70%"
-                    height="200px"
+                    height="160px"
                     frameBorder="0"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy"

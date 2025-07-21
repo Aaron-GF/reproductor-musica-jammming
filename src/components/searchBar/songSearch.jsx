@@ -67,6 +67,10 @@ export default function SongSearch({ onEmptySearch, onSearchActive, onTrackSelec
           <div
             key={track.id}
             className={styles.card}
+            draggable
+            onDragStart={(e) => {
+              e.dataTransfer.setData('application/json', JSON.stringify(track));
+            }}
             onClick={() => onTrackSelected?.(track)}
           >
             <img src={track.album.images[0]?.url} alt={track.name} className={styles.albumImage} />

@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { TiDelete } from 'react-icons/ti';
 import './trackList.css';
+import PlaylistTitleInput from '@/screens/CreatePlaylist/playlistTitleInput';
 
 const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => {
   const ref = useRef(null);
@@ -22,12 +24,9 @@ const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => 
 };
 
 export default function TrackList({
-  items = [
-    'Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5',
-    'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10',
-    'Item 11', 'Item 12', 'Item 13', 'Item 14', 'Item 15'
-  ],
+  items = [],
   onItemSelect,
+  onItemRemove,
   showGradients = true,
   enableArrowNavigation = true,
   className = '',
@@ -98,9 +97,24 @@ export default function TrackList({
   }, [selectedIndex, keyboardNav]);
 
   return (
-    <div className='track-list-container'>
-      <input type="text" />
-      <div className={`scroll-list-container ${className}`}>
+    <div
+      className={`scroll-list-container ${className} ${items.length === 0 ? 'empty-drop-zone' : ''}`}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        const data = e.dataTransfer.getData('application/json');
+        if (data) {
+          const track = JSON.parse(data);
+          if (track && !items.find(i => i.id === track.id)) {
+            onItemSelect?.(track);
+          }
+        }
+      }}
+    >
+      {items.length === 0 ? (
+        <div className="empty-drop-message">
+          <p>Arrastra canciones aquí</p>
+        </div>
+      ) : (
         <div
           ref={listRef}
           className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`}
@@ -120,26 +134,36 @@ export default function TrackList({
               }}
             >
               <div className={`item ${selectedIndex === index ? 'selected' : ''} ${itemClassName}`}>
-                <p className="item-text">{item}</p>
+                <div className="item-text">
+                  {typeof item !== 'string' ? (
+                    <>
+                      <span>{item.name} - {item.artists?.map(a => a.name).join(', ')}</span>
+                      <button
+                        className="remove-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onItemRemove?.(item, index);
+                        }}
+                        aria-label="Eliminar canción"
+                      >
+                        <TiDelete size={25} />
+                      </button>
+                    </>
+                  ) : (
+                    item
+                  )}
+                </div>
               </div>
             </AnimatedItem>
           ))}
         </div>
-        {showGradients && (
-          <>
-            <div
-              className="top-gradient"
-              style={{ opacity: topGradientOpacity }}
-            ></div>
-            <div
-              className="bottom-gradient"
-              style={{ opacity: bottomGradientOpacity }}
-            ></div>
-          </>
-        )}
-      </div>
-      <button className='create-playlist-btn'>Crear lista de reproducción</button>
+      )}
+      {showGradients && (
+        <>
+          <div className="top-gradient" style={{ opacity: topGradientOpacity }}></div>
+          <div className="bottom-gradient" style={{ opacity: bottomGradientOpacity }}></div>
+        </>
+      )}
     </div>
   );
 };
-

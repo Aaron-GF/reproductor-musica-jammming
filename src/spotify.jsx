@@ -1,6 +1,6 @@
 const clientId = '055a20ea891b4c03b8c94ed830fcd1db';
 const redirectUrl = 'http://127.0.0.1:5173';
-const scope = 'user-read-private user-read-email user-read-recently-played user-library-read';
+const scope = 'user-read-private user-read-email user-read-recently-played user-library-read playlist-modify-public playlist-modify-private';
 const authEndpoint = "https://accounts.spotify.com/authorize";
 
 // Verificador de código
@@ -51,7 +51,7 @@ export const generateLoginUrl = async () => {
 };
 
 // Intercambia código por token
-export const exchangeCodeForToken = async (code) => {
+export const exchangeCodeForToken = (code) => {
   const codeVerifier = localStorage.getItem('code_verifier');
   if (!codeVerifier) throw new Error('code_verifier missing');
 
@@ -63,25 +63,44 @@ export const exchangeCodeForToken = async (code) => {
     code_verifier: codeVerifier,
   });
 
-  const response = await fetch('https://accounts.spotify.com/api/token', {
+  return fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body,
-  });
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(errorData => {
+          throw new Error(`Error exchanging token: ${errorData.error_description}`);
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
+      const accessToken = data.access_token;
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(`Error exchanging token: ${errorData.error_description}`);
-  }
+      localStorage.setItem('access_token', accessToken);
+      const expiresAt = Date.now() + data.expires_in * 1000;
+      localStorage.setItem('expires_at', expiresAt.toString());
+      localStorage.removeItem('code_verifier');
 
-  const data = await response.json();
-
-  localStorage.setItem('access_token', data.access_token);
-  const expiresAt = Date.now() + data.expires_in * 1000;
-  localStorage.setItem('expires_at', expiresAt.toString());
-
-  localStorage.removeItem('code_verifier');
-  return data.access_token;
+      // Obtener y guardar en almacenamiento local el id del usuario
+      return fetch('https://api.spotify.com/v1/me', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error('No se pudo obtener el perfil del usuario');
+          }
+          return res.json();
+        })
+        .then(userData => {
+          localStorage.setItem('user_id', userData.id);
+          return accessToken;
+        });
+    });
 };

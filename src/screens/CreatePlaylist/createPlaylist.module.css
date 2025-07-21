@@ -2,10 +2,12 @@
     background: #181818;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    top: 0;
     height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 40%;
+    position: relative;
 }
 
 .rightBody {
@@ -20,6 +22,19 @@
 }
 
 .audioWrapper {
-  bottom: 0;
-  width: 60%;
+    width: 60%;
+    position: absolute;
+    bottom: 2%;
+}
+
+.info {
+    color: #fff;
+    width: 50%;
+    margin: 0 auto;
+    background: #181818;
+    padding: 50px;
+    border-radius: 30px;
+    line-height: 2;
+    letter-spacing: .5px;
+    font-style: italic;
 }
