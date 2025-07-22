@@ -22,8 +22,8 @@ Jammming es una aplicación web que permite a los usuarios buscar canciones, rep
 
 ### Funcionalidades
 <div align="center">
-  <img src="./screenshots/create.png" width="50%" />
-  <img src="./screenshots/player.png" width="50%" />
+  <img src="./screenshots/create.png" width="40%" />
+  <img src="./screenshots/player.png" width="40%" />
 </div>
 
 
