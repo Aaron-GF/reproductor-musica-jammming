@@ -40,9 +40,9 @@ Jammming es una aplicación web que permite a los usuarios buscar canciones, rep
 
 ## ⚙️ Herramientas utilizadas en el desarrollo
 
--Visual Studio Code
--Git & GitHub
--npm / Node.js
+- Visual Studio Code
+- Git & GitHub
+- npm / Node.js
 
 
 ## 📚 Recursos de apoyo
