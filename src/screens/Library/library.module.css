@@ -1,15 +1,14 @@
 .libraryBody {
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
-    padding-left: 2%;
-    margin-bottom: 5%;
+    padding-left: 5%;
+    gap: 1%;
 }
 
 .playlistCard {
     position: relative;
     width: 15%;
-    max-height: 50%;
+    min-width: 150px;
     border-radius: 20px;
     background-color: rgb(30, 42, 62);
     border: 1px solid rgba(54, 69, 98, .18);
@@ -37,7 +36,6 @@
 .playlistImage {
     width: 100%;
     border-radius: 15px;
-    aspect-ratio: 1;
 }
 
 .playlistTitle {

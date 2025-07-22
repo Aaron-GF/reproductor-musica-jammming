@@ -1,12 +1,55 @@
-# React + Vite
+# 🎵 Jammming - Creador de Playlists con Spotify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Jammming es una aplicación web que permite a los usuarios buscar canciones, reproducirlas, organizarlas en listas personalizadas y guardar estas playlists directamente en su cuenta de Spotify. Esta aplicación se creó como parte de una tarea del curso frontend de Codecademy y esta tarea forma el primer proyecto para el portfolio personal.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características
 
-## Expanding the ESLint configuration
+- 🔍 Búsqueda de canciones en tiempo real usando la API de Spotify.
+- ▶️ Reproductor de audio integrado.
+- ➕ Añadir y quitar canciones de la playlist de forma interactiva.
+- 📝 Asignación automática de nombres como "Mi lista n.º X" si no se especifica uno.
+- 🖼️ Portadas generadas automáticamente desde el álbum.
+- 💾 Guardado directo de la playlist en tu cuenta de Spotify.
+- 💡 Diálogos de confirmación y advertencia personalizados con `SweetAlert2`.
+- 🆕 Muestra las últimas novedades, además de poder buscar canciones, con acceso directo a las canciones o álbumes en Spotify.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 📸 Vista previa
+
+### Pantalla principal
+![Pantalla principal](./screenshots/main.png)
+
+### Funcionalidades
+<div align="center">
+  <img src="./screenshots/create.png" width="30%" />
+  <img src="./screenshots/player.png" width="30%" />
+</div>
+
+
+## 🛠️ Tecnologías utilizadas
+
+- React + Vite
+- Spotify Web API
+- CSS Modules
+- SweetAlert2
+- JavaScript
+- Html
+- LocalStorage
+
+
+## ⚙️ Herramientas utilizadas en el desarrollo
+
+-Visual Studio Code
+-Git & GitHub
+-npm / Node.js
+
+
+## 📚 Recursos de apoyo
+
+- Documentación de Spotify for developers
+- ChatGPT
+- Sitios con componentes de React como `animate-ui` y `reactbits`
+- Sitios web de diseño en CSS de patrones para fondos, degradados,...
+- Tutoriales de youtube
+- `react-icons`

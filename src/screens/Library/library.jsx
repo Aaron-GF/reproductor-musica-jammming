@@ -37,13 +37,11 @@ export default function Library() {
       <div className={styles.libraryBody}>
         {playlists?.map((playlist) => (
           <div key={playlist.id} className={styles.playlistCard} onClick={() => playPlaylist(playlist.id)}>
-            {playlist.images.length > 0 && (
-              <img
-                src={playlist.images && playlist.images.length > 0
-                  ? playlist.images[0].url
-                  : defaultImage}
-                alt={`Imagen de ${playlist.name}`}
-              />)}
+            <img
+              src={playlist.images?.[0]?.url || defaultImage}
+              alt={`Imagen de ${playlist.name}`}
+              className={styles.playlistImage}
+            />
             <p className={styles.playlistTitle}>{playlist.name}</p>
             <p className={styles.playlistSubtitle}>{playlist.tracks.total} Canciones</p>
             <div className={styles.playlistFade}>
