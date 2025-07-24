@@ -81,9 +81,9 @@ export const exchangeCodeForToken = (code) => {
     .then(data => {
       const accessToken = data.access_token;
 
-      localStorage.setItem('access_token', accessToken);
-      const expiresAt = Date.now() + data.expires_in * 1000;
-      localStorage.setItem('expires_at', expiresAt.toString());
+      localStorage.setItem('access_token', accessToken); // Añade token a LocalStorage
+      const expiresAt = Date.now() + data.expires_in * 1000; // Momento en el que expira el token en ms
+      localStorage.setItem('expires_at', expiresAt.toString()); // Añade como string el momento en el que expira
       localStorage.removeItem('code_verifier');
 
       // Obtener y guardar en almacenamiento local el id del usuario
@@ -99,7 +99,7 @@ export const exchangeCodeForToken = (code) => {
           return res.json();
         })
         .then(userData => {
-          localStorage.setItem('user_id', userData.id);
+          localStorage.setItem('user_id', userData.id); // Añade id de usuario a LocalStorage
           return accessToken;
         });
     });

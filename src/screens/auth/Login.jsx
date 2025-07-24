@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/screens/auth/login.module.css';
-import { generateLoginUrl } from '@/spotify';
+import { generateLoginUrl } from '@/Spotify';
 import jammmingLogo from '@/assets/jammming.png';
 import spotifyLogo from '@/assets/spotify-logo.png';
 

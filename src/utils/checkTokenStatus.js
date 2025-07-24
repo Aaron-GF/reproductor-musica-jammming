@@ -19,6 +19,7 @@ export const checkTokenStatus = () => {
         window.location.href = '/login';
         localStorage.removeItem('access_token');
         localStorage.removeItem('expires_at');
+        localStorage.removeItem('user_id');
         }
       })
   }
