@@ -16,7 +16,7 @@ export default function Sidebar() {
         <SidebarButton title="Crear lista" to="/CreatePlaylist" icon={<RiPlayListAddFill />} />
         <SidebarButton title="Biblioteca" to="/Library" icon={<IoLibrary />} />
       </div>
-      <LogOutButton title="Cerrar sesión" to="" icon={<FaSignOutAlt />} />
+      <LogOutButton title="Cerrar sesión" icon={<FaSignOutAlt />} />
     </div>
   )
 }

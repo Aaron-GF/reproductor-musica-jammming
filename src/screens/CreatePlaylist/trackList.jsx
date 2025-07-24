@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { TiDelete } from 'react-icons/ti';
-import './trackList.css';
+import styles from '@/screens/CreatePlaylist/trackList.module.css';
 
 const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => {
   const ref = useRef(null);
@@ -97,7 +97,7 @@ export default function TrackList({
 
   return (
     <div
-      className={`scroll-list-container ${className} ${items.length === 0 ? 'empty-drop-zone' : ''}`}
+      className={`${styles.scrollListContainer} ${className} ${items.length === 0 ? styles.emptyDropZone : ''}`}
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => {
         const data = e.dataTransfer.getData('application/json');
@@ -110,13 +110,13 @@ export default function TrackList({
       }}
     >
       {items.length === 0 ? (
-        <div className="empty-drop-message">
+        <div className={styles.emptyDropMessage}>
           <p>Arrastra canciones aquí</p>
         </div>
       ) : (
         <div
           ref={listRef}
-          className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`}
+          className={`${styles.scrollList} ${!displayScrollbar ? styles.noScrollbar : ''}`}
           onScroll={handleScroll}
         >
           {items.map((item, index) => (
@@ -132,13 +132,13 @@ export default function TrackList({
                 }
               }}
             >
-              <div className={`item ${selectedIndex === index ? 'selected' : ''} ${itemClassName}`}>
-                <div className="item-text">
+              <div className={`${styles.item} ${selectedIndex === index ? styles.selected : ''} ${itemClassName}`}>
+                <div className={styles.itemText}>
                   {typeof item !== 'string' ? (
                     <>
                       <span>{item.name} - {item.artists?.map(a => a.name).join(', ')}</span>
                       <button
-                        className="remove-btn"
+                        className={styles.removeBtn}
                         onClick={(e) => {
                           e.stopPropagation();
                           onItemRemove?.(item, index);
@@ -159,8 +159,8 @@ export default function TrackList({
       )}
       {showGradients && (
         <>
-          <div className="top-gradient" style={{ opacity: topGradientOpacity }}></div>
-          <div className="bottom-gradient" style={{ opacity: bottomGradientOpacity }}></div>
+          <div className={styles.topGradient} style={{ opacity: topGradientOpacity }}></div>
+          <div className={styles.bottomGradient} style={{ opacity: bottomGradientOpacity }}></div>
         </>
       )}
     </div>

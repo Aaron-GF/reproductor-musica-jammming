@@ -44,3 +44,11 @@
     letter-spacing: .5px;
     font-style: italic;
 }
+
+.dragHandle {
+    cursor: grab;
+}
+
+.dragHandle:active {
+    cursor: grabbing;
+}

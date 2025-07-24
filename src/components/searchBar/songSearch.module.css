@@ -60,8 +60,12 @@
     border-radius: 20px;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
     max-width: 60%;
+    cursor: grab;
+}
+
+.card:active {
+    cursor: grabbing;
 }
 
 .card:hover {

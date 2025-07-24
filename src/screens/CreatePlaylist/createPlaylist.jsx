@@ -146,6 +146,7 @@ export default function CreatePlaylist() {
               setSelectedTrack(null);
             }}
             onSearchActive={() => setSearchIsEmpty(false)}
+            className={styles.dragHandle}
           />
         </div>
         {searchIsEmpty && (
