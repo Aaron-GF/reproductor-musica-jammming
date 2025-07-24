@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import global from '@/shared/globalStyles.module.css';
-import styles from '@/screens/Feed/feed.module.css';
+import styles from '@/screens/feed/feed.module.css';
 import SongSearch from '@/components/searchBar/songSearch';
 import { checkTokenStatus } from '@/utils/checkTokenStatus';
 

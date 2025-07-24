@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import defaultImage from '@/assets/fondo-por-defecto-playlist.jpg'
 import background from '@/shared/globalStyles.module.css';
-import styles from '@/screens/Library/library.module.css';
+import styles from '@/screens/library/library.module.css';
 import { IconContext } from 'react-icons';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
