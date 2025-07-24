@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import styles from '@/screens/Home/home.module.css';
+import styles from '@/screens/home/home.module.css';
 
 import { exchangeCodeForToken } from '@/spotify';
-import Login from '@/screens/auth/login';
-import Sidebar from '@/components/Sidebar';
-import Library from '@/screens/Library/library';
-import Feed from '@/screens/Feed/feed';
-import Player from '@/screens/Player/player';
-import CreatePlaylist from '@/screens/CreatePlaylist/createPlaylist';
+import Login from '@/screens/auth/Login';
+import Sidebar from '@/components/sidebar/Sidebar';
+import Library from '@/screens/library/Library';
+import Feed from '@/screens/feed/Feed';
+import Player from '@/screens/player/Player';
+import CreatePlaylist from '@/screens/createPlaylist/CreatePlaylist';
 
 export default function Home() {
   const [token, setToken] = useState(null);

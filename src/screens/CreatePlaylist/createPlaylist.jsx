@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import global from '@/shared/globalStyles.module.css';
-import styles from '@/screens/CreatePlaylist/createPlaylist.module.css';
-import SongSearch from '@/components/searchBar/songSearch';
-import TrackList from '@/screens/CreatePlaylist/trackList';
-import AudioPlayer from '@/components/audioPlayer/audioPlayer.jsx';
-import PlaylistTitleInput from '@/screens/CreatePlaylist/playlistTitleInput';
-import { RippleButton } from '@/components/animate-ui/buttons/ripple';
+import styles from '@/screens/createPlaylist/createPlaylist.module.css';
+import SongSearch from '@/components/searchBar/SongSearch';
+import TrackList from '@/screens/createPlaylist/TrackList';
+import AudioPlayer from '@/components/audioPlayer/AudioPlayer';
+import PlaylistTitleInput from '@/screens/createPlaylist/PlaylistTitleInput';
+import { RippleButton } from '@/components/animate-ui/buttons/Ripple';
 import Swal from 'sweetalert2';
 
 export default function CreatePlaylist() {

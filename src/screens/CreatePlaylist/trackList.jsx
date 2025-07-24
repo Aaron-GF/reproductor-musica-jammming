@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { TiDelete } from 'react-icons/ti';
-import styles from '@/screens/CreatePlaylist/trackList.module.css';
+import styles from '@/screens/createPlaylist/trackList.module.css';
 
 const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => {
   const ref = useRef(null);

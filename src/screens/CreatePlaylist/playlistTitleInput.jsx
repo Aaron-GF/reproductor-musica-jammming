@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '@/screens/CreatePlaylist/playlistTitleInput.module.css';
+import styles from '@/screens/createPlaylist/playlistTitleInput.module.css';
 
 export default function PlaylistTitleInput({ title, onTitleChange }) {
     return (

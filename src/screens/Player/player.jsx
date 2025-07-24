@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import global from '@/shared/globalStyles.module.css';
-import styles from '@/screens/Player/player.module.css';
-import SongCard from '@/components/songCard/songCard';
-import Queue from '@/components/queue/queue';
-import AudioPlayer from '@/components/audioPlayer/audioPlayer';
+import styles from '@/screens/player/player.module.css';
+import SongCard from '@/components/songCard/SongCard';
+import Queue from '@/components/queue/Queue';
+import AudioPlayer from '@/components/audioPlayer/AudioPlayer';
 import { checkTokenStatus } from '@/utils/checkTokenStatus';
 
 export default function Player() {

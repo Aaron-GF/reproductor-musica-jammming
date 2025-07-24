@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from '@/components/Sidebar/sidebar.module.css';
-import SidebarButton from '@/components/sidebar/sidebarButton';
+import styles from '@/components/sidebar/sidebar.module.css';
+import SidebarButton from '@/components/sidebar/SidebarButton';
+import LogOutButton from '@/components/sidebar/LogOutButton';
 import { MdSpaceDashboard } from 'react-icons/md';
 import { IoLibrary } from 'react-icons/io5';
 import { FaPlay, FaSignOutAlt } from 'react-icons/fa';
-import LogOutButton from '@/components/sidebar/logOutButton';
 import { RiPlayListAddFill } from 'react-icons/ri';
 
 export default function Sidebar() {

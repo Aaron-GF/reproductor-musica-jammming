@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '@/components/songCard/songCard.module.css';
-import AlbumInfo from '@/components/songCard/albumInfo';
-import AlbumImage from '@/components/songCard/albumImage';
+import AlbumInfo from '@/components/songCard/AlbumInfo';
+import AlbumImage from '@/components/songCard/AlbumImage';
 
 export default function SongCard({ album }) {
   return (
