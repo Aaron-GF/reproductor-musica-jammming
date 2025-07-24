@@ -1,5 +1,5 @@
 const clientId = '055a20ea891b4c03b8c94ed830fcd1db';
-const redirectUrl = 'https://reproductor-musica-jammming.vercel.app/';
+const redirectUrl = 'https://reproductor-musica-jammming-aarons-projects-ca284c3d.vercel.app/';
 const scope = 'user-read-private user-read-email user-read-recently-played user-library-read playlist-modify-public playlist-modify-private';
 const authEndpoint = "https://accounts.spotify.com/authorize";
 
