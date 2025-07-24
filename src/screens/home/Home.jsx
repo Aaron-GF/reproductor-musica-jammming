@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styles from '@/screens/home/home.module.css';
 
-import { exchangeCodeForToken } from '@/spotify';
+import { exchangeCodeForToken } from '@/Spotify';
 import Login from '@/screens/auth/Login';
 import Sidebar from '@/components/sidebar/Sidebar';
 import Library from '@/screens/library/Library';
