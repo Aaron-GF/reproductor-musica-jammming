@@ -16,7 +16,7 @@ export const checkTokenStatus = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-        window.location.href = '/login';
+        window.location.href = '/';
         localStorage.removeItem('access_token');
         localStorage.removeItem('expires_at');
         localStorage.removeItem('user_id');
