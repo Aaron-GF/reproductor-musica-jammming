@@ -1,29 +1,50 @@
-
 .screenContainer {
-    width: calc(100% - 100px);
-    height: 100%;
-    background-color: #1e2a3e;
-    border-radius: 30px;
-    opacity: 1;
-    background-image: repeating-radial-gradient(circle at 0% 23%, transparent 0, #1e2a3e 100px), repeating-linear-gradient(#23365655, #233656);
-    overflow-y: auto;
-    scrollbar-color: transparent transparent;
-    transition: all .3s ease;
+  width: calc(100% - 100px);
+  height: 100%;
+  background-color: #1e2a3e;
+  border-radius: 30px;
+  opacity: 1;
+  background-image: repeating-radial-gradient(
+      circle at 0% 23%,
+      transparent 0,
+      #1e2a3e 100px
+    ),
+    repeating-linear-gradient(#23365655, #233656);
+  overflow-y: auto;
+  scrollbar-color: transparent transparent;
+  transition: all 0.3s ease;
 }
 
 .screenContainer:hover {
-    scrollbar-color: rgba(244, 187, 146, 1) transparent;
+  scrollbar-color: rgba(244, 187, 146, 1) transparent;
 }
 
 .screenContainerNoScroll {
-    width: calc(100% - 100px);
-    height: 100%;
-    background-color: #1e2a3e;
-    border-radius: 30px;
-    opacity: 1;
-    background-image: repeating-radial-gradient(circle at 0% 23%, transparent 0, #1e2a3e 100px), repeating-linear-gradient(#23365655, #233656);
+  width: calc(100% - 100px);
+  height: 100%;
+  background-color: #1e2a3e;
+  border-radius: 30px;
+  opacity: 1;
+  background-image: repeating-radial-gradient(
+      circle at 0% 23%,
+      transparent 0,
+      #1e2a3e 100px
+    ),
+    repeating-linear-gradient(#23365655, #233656);
 }
 
 .flex {
-    display: flex;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .screenContainer,
+  .screenContainerNoScroll {
+    width: 100%;
+    height: calc(100% - 70px);
+    border-radius: 0;
+  }
+  .flex {
+    flex-direction: column;
+  }
 }

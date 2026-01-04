@@ -1,53 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import styles from '@/screens/home/home.module.css';
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import styles from "@/screens/home/home.module.css";
 
-import { exchangeCodeForToken } from '@/Spotify';
-import Login from '@/screens/auth/Login';
-import Sidebar from '@/components/sidebar/Sidebar';
-import Library from '@/screens/library/Library';
-import Feed from '@/screens/feed/Feed';
-import Player from '@/screens/player/Player';
-import CreatePlaylist from '@/screens/createPlaylist/CreatePlaylist';
+import { useAuth } from "@/context/AuthContext";
+import Login from "@/screens/auth/Login";
+import Sidebar from "@/components/sidebar/Sidebar";
+import Library from "@/screens/library/Library";
+import Feed from "@/screens/feed/Feed";
+import Player from "@/screens/player/Player";
+import CreatePlaylist from "@/screens/createPlaylist/CreatePlaylist";
 
 export default function Home() {
-  const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { token, loading, handleTokenExchange } = useAuth();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    const localToken = localStorage.getItem('access_token');
+    const code = urlParams.get("code");
 
-    if (localToken) {
-      setToken(localToken);
-      setLoading(false);
-      return;
+    if (code && !token) {
+      handleTokenExchange(code)
+        .then(() => {
+          window.history.replaceState({}, document.title, "/"); // limpia URL
+        })
+        .catch((err) => {
+          console.error("Error exchanging code for token in Home:", err);
+        });
     }
-
-    if (!code) {
-      setLoading(false);
-      return;
-    }
-
-    // intercambiar código por token
-    exchangeCodeForToken(code)
-      .then(token => {
-        setToken(token);
-        window.history.replaceState({}, document.title, '/'); // limpia URL
-        window.location.reload();
-      })
-      .catch(err => {
-        console.error(err);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  }, [token, handleTokenExchange]);
 
   if (loading) return <p>Cargando...</p>;
   if (!token) return <Login />;
 
   return (
-      <div className={styles.mainBody}>
+    <div className={styles.mainBody}>
       <Sidebar />
       <Routes>
         <Route path="/login" element={<Login />} />

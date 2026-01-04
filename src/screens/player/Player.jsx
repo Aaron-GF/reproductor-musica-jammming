@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import global from '@/shared/globalStyles.module.css';
-import styles from '@/screens/player/player.module.css';
-import SongCard from '@/components/songCard/SongCard';
-import Queue from '@/components/queue/Queue';
-import AudioPlayer from '@/components/audioPlayer/AudioPlayer';
-import { checkTokenStatus } from '@/utils/checkTokenStatus';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import global from "@/shared/globalStyles.module.css";
+import styles from "@/screens/player/player.module.css";
+import SongCard from "@/components/songCard/SongCard";
+import Queue from "@/components/queue/Queue";
+import AudioPlayer from "@/components/audioPlayer/AudioPlayer";
+import spotifyService from "@/services/spotifyService";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Player() {
   const { id } = useParams();
@@ -14,62 +15,43 @@ export default function Player() {
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
-  const token = localStorage.getItem('access_token');
+  const { token } = useAuth();
 
   // Obtener playlists de la biblioteca
   useEffect(() => {
-    checkTokenStatus();
     if (!token) return;
 
-    fetch('https://api.spotify.com/v1/me/playlists?limit=10', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          console.error('Error obteniendo playlists:', data.error);
-          return;
-        }
-        setLibraryPlaylists(data.items || []);
-      })
-      .catch(err => console.error('Error fetching playlists:', err));
+    spotifyService
+      .getUserPlaylists(10)
+      .then((items) => setLibraryPlaylists(items))
+      .catch((err) => console.error("Error fetching playlists:", err));
   }, [token]);
 
   // Decidir qué playlist cargar: id de URL o la primera de la biblioteca
   useEffect(() => {
-    checkTokenStatus();
     if (id) {
       setPlaylistId(id);
     } else if (libraryPlaylists.length > 0) {
-      const random = Math.floor(Math.random() * libraryPlaylists.length)
+      const random = Math.floor(Math.random() * libraryPlaylists.length);
       setPlaylistId(libraryPlaylists[random].id);
     }
   }, [id, libraryPlaylists]);
 
   // Cargar tracks de la playlist seleccionada
   useEffect(() => {
-    checkTokenStatus();
     if (!playlistId || !token) return;
 
-    fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          console.error('Error cargando tracks:', data.error);
-          return;
-        }
-        setTracks(data.items);
-        console.log(data.items)
-        setCurrentTrack(data.items[0]?.track);
+    spotifyService
+      .getPlaylistTracks(playlistId)
+      .then((items) => {
+        setTracks(items);
+        setCurrentTrack(items[0]?.track);
         setCurrentIndex(0);
       })
-      .catch(err => console.error('Error fetching tracks:', err));
+      .catch((err) => console.error("Error fetching tracks:", err));
   }, [playlistId, token]);
 
   useEffect(() => {
-    checkTokenStatus();
     if (tracks.length > 0) {
       setCurrentTrack(tracks[currentIndex]?.track);
     }
@@ -84,7 +66,11 @@ export default function Player() {
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
         />
-        <Queue artist={currentTrack?.artist} tracks={tracks} setCurrentIndex={setCurrentIndex} />
+        <Queue
+          artist={currentTrack?.artist}
+          tracks={tracks}
+          setCurrentIndex={setCurrentIndex}
+        />
       </div>
       <div className={styles.rightBody}>
         <SongCard album={currentTrack?.album} />

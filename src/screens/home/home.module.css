@@ -1,6 +1,13 @@
 .mainBody {
-    height: 100vh;
-    background-color: #e99d72;
-    border-radius: 30px;
-    display: flex;
+  height: 100vh;
+  background-color: #e99d72;
+  border-radius: 30px;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .mainBody {
+    flex-direction: column-reverse;
+    border-radius: 0;
+  }
 }
